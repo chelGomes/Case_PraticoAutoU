@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificador Inteligente de Emails</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                    <path d="M12 14L20 20L28 14M12 14V26H28V14H12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#667eea"/>
+                            <stop offset="1" stop-color="#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1>Classificador Inteligente de Emails</h1>
+            </div>
+            <p class="subtitle">Sistema de classificação automática com IA para otimização de emails corporativos</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="tabs">
+                    <button class="tab active" data-tab="text">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2 4h16M2 10h16M2 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Digitar Email
+                    </button>
+                    <button class="tab" data-tab="file">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13 2H6a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7l-3-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13 2v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Upload de Arquivo
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="text-content">
+                    <form id="text-form">
+                        <div class="form-group">
+                            <label for="email-text">Cole ou digite o conteúdo do email:</label>
+                            <textarea 
+                                id="email-text" 
+                                name="email_text" 
+                                placeholder="Cole aqui o texto do email que deseja classificar...&#10;&#10;Exemplo:&#10;Olá equipe,&#10;&#10;Gostaria de solicitar uma atualização sobre o caso #12345 que abri na semana passada. Ainda não recebi retorno sobre a análise solicitada.&#10;&#10;Aguardo retorno.&#10;Atenciosamente,&#10;João Silva"
+                                rows="10"
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9 2a7 7 0 100 14A7 7 0 009 2zm0 0v7l3 3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Classificar Email
+                        </button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="file-content">
+                    <form id="file-form">
+                        <div class="file-upload-area" id="drop-zone">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                <path d="M24 8v24M14 22l10-10 10 10" stroke="#667eea" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M38 34v4a2 2 0 01-2 2H12a2 2 0 01-2-2v-4" stroke="#667eea" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <p class="upload-text">Arraste e solte o arquivo aqui</p>
+                            <p class="upload-subtext">ou</p>
+                            <label for="file-input" class="file-label">Selecione o arquivo</label>
+                            <input type="file" id="file-input" name="file" accept=".txt,.pdf" hidden>
+                            <p class="file-info">Formatos suportados: .txt, .pdf (máx. 16MB)</p>
+                            <p class="selected-file" id="selected-file"></p>
+                        </div>
+                        <button type="submit" class="btn-primary" id="file-submit" disabled>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9 2a7 7 0 100 14A7 7 0 009 2zm0 0v7l3 3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Classificar Email
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="results-section" id="results" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>Resultado da Classificação</h3>
+                        <span class="category-badge" id="category-badge"></span>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="result-item">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9 2a7 7 0 100 14A7 7 0 009 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Categoria
+                            </h4>
+                            <p id="category-result" class="category-text"></p>
+                        </div>
+
+                        <div class="result-item">
+                            <h4>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M2 4h16M2 10h16M2 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Resposta Sugerida
+                            </h4>
+                            <div class="response-box" id="response-result"></div>
+                            <button class="btn-copy" onclick="copyResponse()">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M4 2h8a2 2 0 012 2v8M2 6h8a2 2 0 012 2v6a2 2 0 01-2 2H2a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                Copiar Resposta
+                            </button>
+                        </div>
+
+                        <div class="result-item collapsible">
+                            <h4 onclick="toggleDetails()">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M7 10l3 3 3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" id="arrow-icon"/>
+                                </svg>
+                                Detalhes do Processamento
+                            </h4>
+                            <div class="details-content" id="details-content">
+                                <div class="detail-box">
+                                    <strong>Texto Original (preview):</strong>
+                                    <p id="original-text"></p>
+                                </div>
+                                <div class="detail-box">
+                                    <strong>Texto Pré-processado (NLP):</strong>
+                                    <p id="preprocessed-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-secondary" onclick="resetForm()">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M4 8V4m0 0h4M4 4l5 5m7-1A7 7 0 104 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Classificar Outro Email
+                    </button>
+                </div>
+            </div>
+
+            <div class="loader" id="loader" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processando email com IA...</p>
+            </div>
+
+            <div class="error-message" id="error" style="display: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#f56565" stroke-width="2"/>
+                    <path d="M12 8v4M12 16h.01" stroke="#f56565" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p id="error-message"></p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-icon productive">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h4>Produtivo</h4>
+                    <p>Emails que requerem ação: solicitações, dúvidas técnicas, atualizações</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon unproductive">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h4>Improdutivo</h4>
+                    <p>Emails sem ação imediata: felicitações, agradecimentos, mensagens pessoais</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
