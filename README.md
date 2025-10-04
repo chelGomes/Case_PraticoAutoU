@@ -98,16 +98,18 @@ Mensagens pessoais
 Comunicados gerais
 🔧 Estrutura do Projeto
 .
-├── main.py                 # Backend Flask
+├── main.py                 # Backend Flask (ponto de entrada da aplicação)
 ├── templates/
-│   └── index.html         # Interface web
+│   └── index.html          # Interface web (HTML principal)
 ├── static/
-│   ├── style.css          # Estilos
-│   └── script.js          # Lógica frontend
-├── uploads/               # Diretório temporário (criado automaticamente)
-├── .env.example           # Template de configuração
-├── .gitignore            # Arquivos ignorados
-└── README.md             # Esta documentação
+│   ├── style.css           # Estilos da interface
+│   └── script.js           # Lógica frontend em JavaScript
+├── uploads/                # Diretório temporário para salvar arquivos enviados
+├── .env.example            # Exemplo de variáveis de ambiente (OPENAI_API_KEY, etc.)
+├── .gitignore              # Lista de arquivos/pastas ignorados no Git
+├── requirements.txt        # Dependências do projeto (Flask, OpenAI, etc.)
+├── Procfile                # Instrução para o Render iniciar a aplicação
+└── README.md               # Documentação principal do projeto
 🎨 Exemplos de Uso
 Email Produtivo:
 
@@ -152,4 +154,4 @@ Este projeto foi desenvolvido como solução para desafio técnico.
 👥 Suporte
 Para dúvidas ou suporte, entre em contato através dos canais disponíveis.
 
-Desenvolvido com ❤️ usando Flask, OpenAI e NLTK
+Desenvolvido com 📚🤖 usando Flask, OpenAI e NLTK
