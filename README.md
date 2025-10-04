@@ -1,7 +1,16 @@
 # Case_PraticoAutoU
 
 📧 Classificador Inteligente de Emails com IA
-Sistema web de classificação automática de emails usando inteligência artificial, desenvolvido para empresas do setor financeiro que lidam com alto volume de emails diários.
+Sistema web de classificação automática de emails usando inteligência artificial, desenvolvido por Michel Andrade para empresas do setor financeiro que lidam com alto volume de emails diários.
+
+🔗 Acesse o projeto online:
+👉 https://replit.com/@andrademichel20/CasePraticoAutoU
+
+⚠️ Importante: Para acessar o projeto no Replit, é necessário fazer login ou criar uma conta gratuita usando email e senha (ou autenticação com Google/GitHub).
+Após o login, clique em “Run” para executar a aplicação diretamente no navegador.
+Email de acesso dessa aplicação: andrademichel2026@gmail.com
+Senha: potasio8800
+
 
 🎯 Funcionalidades
 Classificação Automática: Identifica emails como "Produtivo" (requerem ação) ou "Improdutivo" (sem ação imediata)
@@ -9,6 +18,7 @@ Respostas Sugeridas: Gera respostas automáticas personalizadas usando IA
 Múltiplos Formatos: Aceita entrada de texto direto ou upload de arquivos (.txt, .pdf)
 Processamento NLP: Utiliza técnicas de processamento de linguagem natural em português
 Interface Moderna: Design intuitivo com drag-and-drop e feedback em tempo real
+
 🚀 Como Usar
 1. Entrada de Texto
 Acesse a aba "Digitar Email"
@@ -24,6 +34,7 @@ O sistema exibirá:
 Categoria: Produtivo ou Improdutivo
 Resposta Sugerida: Texto pronto para uso
 Detalhes do Processamento: Análise NLP aplicada
+
 🏗️ Arquitetura Técnica
 Backend
 Framework: Flask (Python)
@@ -42,6 +53,7 @@ Validação de tipos de arquivo (whitelist)
 Limite de 16MB por upload
 CORS configurado
 Gerenciamento seguro de API keys
+
 📦 Dependências
 flask
 flask-cors
@@ -51,6 +63,7 @@ openai
 pypdf2
 python-dotenv
 werkzeug
+
 ⚙️ Configuração Local
 Clone o repositório
 git clone <seu-repositorio>
@@ -81,7 +94,9 @@ Vercel/Netlify: Configure como aplicação Flask seguindo a documentação da pl
 AWS/GCP: Use o gunicorn configurado no deployment:
 
 gunicorn --bind=0.0.0.0:5000 --reuse-port main:app
+
 📝 Categorias de Classificação
+
 Produtivo
 Emails que requerem ação ou resposta específica:
 
@@ -89,6 +104,7 @@ Solicitações de suporte técnico
 Atualizações sobre casos em aberto
 Dúvidas sobre o sistema
 Requisições de informação
+
 Improdutivo
 Emails que não necessitam ação imediata:
 
@@ -96,6 +112,7 @@ Mensagens de felicitações
 Agradecimentos
 Mensagens pessoais
 Comunicados gerais
+
 🔧 Estrutura do Projeto
 .
 ├── main.py                 # Backend Flask (ponto de entrada da aplicação)
@@ -110,7 +127,9 @@ Comunicados gerais
 ├── requirements.txt        # Dependências do projeto (Flask, OpenAI, etc.)
 ├── Procfile                # Instrução para o Render iniciar a aplicação
 └── README.md               # Documentação principal do projeto
+
 🎨 Exemplos de Uso
+
 Email Produtivo:
 
 Olá equipe,
@@ -122,6 +141,7 @@ a análise solicitada.
 Aguardo retorno.
 Atenciosamente,
 João Silva
+
 Email Improdutivo:
 
 Olá equipe,
@@ -130,12 +150,14 @@ Gostaria de desejar um Feliz Natal a todos!
 
 Abraços,
 Maria
+
 🔐 Obtendo API Key da OpenAI
 Acesse: https://platform.openai.com/api-keys
 Faça login ou crie uma conta
 Clique em "Create new secret key"
 Copie a chave (começa com "sk-")
 Adicione ao arquivo .env ou secrets da plataforma
+
 🐛 Solução de Problemas
 Erro: API key não configurada
 
@@ -148,10 +170,11 @@ Erro ao processar arquivo
 
 Verifique se o arquivo é .txt ou .pdf válido
 Tamanho máximo: 16MB
+
 📄 Licença
 Este projeto foi desenvolvido como solução para desafio técnico.
 
 👥 Suporte
-Para dúvidas ou suporte, entre em contato através dos canais disponíveis.
+Para dúvidas ou suporte, entre em contato através dos canais disponíveis(e-mail de contato :michelgomes2023@outlook.com).
 
 Desenvolvido com 📚🤖 usando Flask, OpenAI e NLTK
