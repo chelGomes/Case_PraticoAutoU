@@ -151,6 +151,11 @@ Gostaria de desejar um Feliz Natal a todos!
 Abraços,
 Maria
 
+🧩 Pasta de Arquivos de Teste (Arquivos_Teste_Email)
+
+Esta pasta contém arquivos de exemplo usados para validar e demonstrar o funcionamento do Classificador Inteligente de Emails.
+Os arquivos simulam mensagens reais recebidas por uma empresa, permitindo testar rapidamente o sistema de classificação automática.
+
 🔐 Obtendo API Key da OpenAI
 Acesse: https://platform.openai.com/api-keys
 Faça login ou crie uma conta
